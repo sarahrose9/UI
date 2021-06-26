@@ -12,6 +12,8 @@ const reducer=(prevState,action)=>{
                 return {tasks: prevState.tasks.filter(task=>task._id!==action.payload)}
         case "ADD":
             return{tasks:[...prevState.tasks,action.payload]}
+        case "REMOVEALL":
+            return{tasks: prevState.tasks}
 
     }
     

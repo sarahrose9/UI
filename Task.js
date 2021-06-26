@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Consumer} from './context'
+import axios from 'axios'
 
 export default class Task extends Component {
     style =()=>{
@@ -10,8 +11,10 @@ export default class Task extends Component {
         dispatch({type:"TOGGLE",payload:id})
     }
     remove=(id,dispatch)=>{
-        dispatch({type:"REMOVE",payload:id})
+        axios.delete('/tasks/${id}')
+       .then(()=> dispatch({type:"REMOVE",payload:id}))
     }
+    
     render() {
         const {title,_id}= this.props.task
         return (

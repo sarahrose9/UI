@@ -20,10 +20,6 @@ export default class AddTask extends Component {
         .then(res=> dispatch({type:'ADD',payload:res.data}))
         this.setState({title:""})
     }
-    removeall=(dispatch)=>{
-        axios.delete('/tasks')
-       .then(()=> dispatch({type:"REMOVEALL"}))
-    }
     render() {
         return (
             <Consumer>{value =>{
@@ -31,7 +27,6 @@ export default class AddTask extends Component {
                 return <form onSubmit={this.add.bind(this,dispatch)}>
                 <input type="text" className="form-control rounded-0" placeholder="Enter the task here :" onChange={this.update} value={this.state.value}/>
                 <button className="form-control rounded-0 btn-secondary" type="submit">Add Task</button>
-                <button className="form-control rounded-0 btn-danger" type="submit"onClick={this.removeall.bind(this,dispatch)} >Delete All</button>
             </form>
             }}</Consumer>
         )
